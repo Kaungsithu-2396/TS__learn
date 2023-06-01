@@ -10,4 +10,10 @@ let pointA: extraPoint = {
     y: 5,
     z: "minglar par",
 };
-
+console.log(pointA);
+enum showDirection {
+    left = 1,
+    right,
+    top,
+}
+console.log(showDirection.top);

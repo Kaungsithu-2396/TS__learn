@@ -7,12 +7,12 @@ let earth = {
     info: (txt) => txt.toUpperCase(),
 };
 console.log(earth.info("Welcome"));
-function doSmth(fn) {
-    console.log `${fn.description} ${fn(4)}`;
+const isEvan = (x) => x % 2 == 0;
+isEvan.description = "hello from function with property";
+function triggerAction(fn) {
+    console.log(`${fn.description} and result is ${fn(5)}`);
 }
-const isEvan = (n) => n % 2 == 0;
-isEvan.description = "isEvan called";
-doSmth(isEvan);
+triggerAction(isEvan);
 // type chgUpperCase = (txt: string) => string;
 // const letterUpper: chgUpperCase = (txt) => txt.toUpperCase();
 // console.log(letterUpper("mg aye"));
@@ -27,3 +27,20 @@ function fn(ctor) {
     return new ctor("mg kaung", 20);
 }
 console.log(fn(constructorTst));
+const showDate = (ctor) => {
+    return ctor();
+};
+console.log(showDate(Date));
+function greetFunc(fn) {
+    fn("hello from practice");
+}
+const introFunc = (txt) => console.log(txt);
+greetFunc(introFunc);
+//nested function
+function nestedFunc(x) {
+    return function (y) {
+        return x * y;
+    };
+}
+const multiplyWithTwo = nestedFunc(2);
+multiplyWithTwo(4);

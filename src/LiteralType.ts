@@ -3,7 +3,11 @@ function showMsg(msg: string, gender: "Male" | "Female" | "Prefer not to say") {
 }
 console.log(showMsg("Welcome", "Male"));
 
-const req = { url: "blahblah.com", method: "GET" as "GET" }; // so that we can't assign others excpet GET
+type reqShape = {
+    url: string;
+    method: "GET" | "POST";
+};
+const req: reqShape = { url: "blahblah.com", method: "GET" }; // so that we can't assign others excpet GET
 function handleReq(url: string, method: string) {
     return url + "  " + method;
 }

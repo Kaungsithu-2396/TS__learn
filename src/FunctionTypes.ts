@@ -12,16 +12,16 @@ let earth: EarthData = {
 };
 console.log(earth.info("Welcome"));
 //call signature ( when we want to add property to function)
-type DescribableFunc = {
+type callSignatureShape = {
     description: string;
-    (arg: number): boolean;
+    (txt: number): boolean;
 };
-function doSmth(fn: DescribableFunc) {
-    console.log`${fn.description} ${fn(4)}`;
+const isEvan = (x: number) => x % 2 == 0;
+isEvan.description = "hello from function with property";
+function triggerAction(fn: callSignatureShape) {
+    console.log(`${fn.description} and result is ${fn(5)}`);
 }
-const isEvan = (n: number) => n % 2 == 0;
-isEvan.description = "isEvan called";
-doSmth(isEvan);
+triggerAction(isEvan);
 
 // type chgUpperCase = (txt: string) => string;
 // const letterUpper: chgUpperCase = (txt) => txt.toUpperCase();
@@ -43,3 +43,29 @@ function fn(ctor: someConstructor) {
     return new ctor("mg kaung", 20);
 }
 console.log(fn(constructorTst));
+
+interface callOrConstruct {
+    new (s: string): Date;
+    (n?: number): string;
+}
+const showDate = (ctor: callOrConstruct) => {
+    return  ctor();
+};
+console.log(showDate(Date));
+
+//practice
+//normal function
+type GreetFuncShape = (a: string) => void;
+function greetFunc(fn: GreetFuncShape) {
+    fn("hello from practice");
+}
+const introFunc = (txt: string) => console.log(txt);
+greetFunc(introFunc);
+//nested function
+function nestedFunc(x: number) {
+    return function (y: number): number {
+        return x * y;
+    };
+}
+const multiplyWithTwo = nestedFunc(2);
+multiplyWithTwo(4);
